@@ -1,26 +1,26 @@
 function [r,k]=regula_falsi(a,b,epsilon)
 
-fa=exp(-a)-log(a);
-fb=exp(-b)-log(b);
-fc = inf;
-k=0;
+% FORMULA FOR f(a) and f(b)
+fa = exp(-a) - log(a);
+fb = exp(-b) - log(b);
 
-if fa*fb>0
+% INITIALIZE VALUES
+fc = inf;
+k = 0;
+
+% SET-UP
+if fa*fb > 0
     error('error interval')
     
 else
-    while abs(fc)>epsilon 
-
-       fa=exp(-a)-log(a);
-       fb=exp(-b)-log(b);
-        
-       c = a-((fa*(b-a))/(fb-fa));
-        
-       fc=exp(-c)-log(c);
+    while abs(fc) > epsilon 
        
-
-        r=[a,b];
-        k=k+1;
+       r=[a,b];                     % SETTING INTERVAL
+       fa = exp(-a) - log(a);
+       fb = exp(-b) - log(b);
+       c = a-((fa*(b-a))/(fb-fa));  % FORMULA FOR c
+       fc = exp(-c)-log(c);         % FORMULA FOR f(c)
+       k=k+1;
         
         if fc < 0
             if fa < 0
@@ -36,7 +36,7 @@ else
                 b = c;
             end
         end
-
+        fc = abs(fc);
     end
 end
 
