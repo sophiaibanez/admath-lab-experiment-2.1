@@ -34,9 +34,10 @@ while abs(fc) > epsilon
          else
          b = c;
          end 
-         
      end
+  fc = abs(fc)
 end
+
 end
 
 disp(r)
